@@ -1,0 +1,440 @@
+\documentclass[12pt]{article}
+\usepackage{blindtext}
+\usepackage[top=25mm, bottom=25mm, left=20mm, right=20mm]{geometry}
+\usepackage{t1enc}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{lastpage}
+\usepackage{amsmath}
+\usepackage{amssymb,physics}
+\usepackage{amsthm}
+\usepackage{empheq}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage{gensymb}
+\usepackage{pdfpages}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{pgfplots}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\pgfplotsset{compat = newest}
+\usepackage{listings}
+\usepackage[makeroom]{cancel}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.9059,0.902,0.9137}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\urlstyle{same}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{pict2e}
+\usepackage{blindtext}
+\usepackage{tikz}
+\newcommand*\circledB{%
+  \tikz[baseline=(char.base)]{%
+    \node[shape=circle,draw,inner sep=1pt] (char) {b};%
+  }%
+}
+% Table float box with bottom caption, box width adjusted to content
+
+
+\newcommand*\circled[1]{%
+  \tikz[baseline=(char.base)]{%
+    \node[shape=circle,draw,inner sep=1pt] (char) {#1};%
+  }%
+}
+
+
+\DeclareRobustCommand{\slashcirc}{{\mathpalette\doslashcirc\relax}}
+
+\usepackage{graphicx,array}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{130pt}}m{#1}}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{130pt}}m{#1}}
+
+\makeatother
+
+\usepackage{amsmath}
+\newcommand\aug{\fboxsep=-\fboxrule\!\!\!\fbox{\strut}\!\!\!}
+\usepackage{wasysym}
+\usepackage{tikz}
+\usepackage{xcolor}
+%\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+\newcommand*\widefbox[1]{\fbox{\hspace{2em}#1\hspace{2em}}}
+\newcommand{\fakesection}[1]{%
+% Increase section counter
+  % Add section mark (header)
+  \addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}% Add section to ToC
+  % Add more content here, if needed.
+}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+\pagestyle{fancy}
+\newcommand\invisiblesection[1]{%
+  \refstepcounter{section}%
+  \addcontentsline{toc}{section}{\protect\numberline{}Feladatkitűzés}
+  \sectionmark{1}}
+\newcommand{\NEV}{Gergő Kelle}
+\newcommand{\NEPTUN}{GBBNUL}
+\newcommand{\TANTARGYKOD}{BMEGEMMNWFE}
+\newcommand{\HFCIME}{Finite Element Analysis \\ I. Homework}
+\newcommand{\HFFEJLECCIME}{Finite Element Analysis}
+\title{\centering \includegraphics[width=10 cm , height=2.8cm]{bme_logo_nagy}
+\bigskip
+
+\normalfont \normalsize \textsc{\centering Budapest University of Technology and Economics
+\\ Faculty of Mechanical Engineering} \\ [12pt] \horrule{0.5pt} \\[0.4cm] \huge \HFCIME{} \\ \horrule{2pt} \\[0.5cm]}
+\lhead{\TANTARGYKOD, \HFFEJLECCIME{}}
+\rfoot{\thepage\ / \pageref{LastPage}}
+\cfoot{}
+\rhead{\NEV{}, \NEPTUN{}}
+\author{\NEV{}}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+\includepdf[pages=1]{Finite_Element_Analysis_HW_01_kitoltott.pdf}
+\pagebreak
+\maketitle
+\pagebreak
+
+\pagebreak
+\tableofcontents
+\newpage
+\section{Symbolic FE calculation}
+Calculate the critical values of the forces, given by F if $I_2 = I_1$! Perform a detailed FE calculation by a freeware (e.g.: MAXIMA) symbolic mathematical software! Apply four elements!\\
+\horrule{0.4pt}
+\medskip
+
+
+%\begin{figure} [h!]
+%		\begin{center}
+%	 \includegraphics[width=0.4\textwidth]{abra}		
+%	 \caption{Sematikus rendszerábra}
+%		\end{center}
+%\end{figure}
+\noindent In this task, we need to perform a Finite Element Analysis using a freeware symbolic mathematical software like MAXIMA. I've choosed to use Python code to carry out the necessary symbolic calculations and apply them to the FEA analysis. The input data required for the analysis is provided in \ref{tab:Data}.
+
+\begin{table} [h!]
+\center
+\caption{Given input data for code 121}
+\label{tab:Data}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{c c c c c c c}
+$L$ & $A_1$ & $A_2$ &  $B_1$ & $B_2$ & $E$ & $\nu$                      \\ 
+$\left[ \text{mm} \right]$ & $\left[ \text{mm} \right]$ &$\left[ \text{mm} \right]$ &$\left[ \text{mm} \right]$ &$\left[ \text{mm} \right]$ &$\left[ \text{MPa} \right]$ & $\left[ \text{-} \right]$ \\[0.1cm] \hline 
+3000 & 20 &  26 & 50 & 59 & 200000 & 0.3                               
+\end{tabular}
+\end{table}
+
+\noindent If we consider case a., the cross-sectional shape of the beam remains constant along the $x$-axis, resulting in a constant value for the second moment of inertia along the beam. To calculate the second moment of inertia ($I_z$) for a rectangular cross-section with respect to the $z$-axis, we can use the following equation: 
+
+
+\begin{equation}
+I_z = I_1 = \frac{A_1^3 ~ B_1}{12} = 33333.33 ~ \left[ \text{mm}^4 \right].
+\end{equation}
+
+
+\noindent The beam is discretized into four elements, with two elements being applied in each of the two halves. The numbering of nodes and elements starts from the right end of the beam. Detailed information about the discretization can be found in the tables provided, which include data such as the element length, node coordinates, and element stiffness values. 
+
+\begin{table}[ht]
+\captionsetup{justification=centering,position=top} % set caption above table and centered
+\caption{Discretization} % common caption for both tables
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\captionsetup{justification=centering} % set subcaption centered
+\begin{tabular}{ c c c }
+ Node & x $\left[ \text{mm} \right]$ & y $\left[ \text{mm} \right]$ \\
+ \hline
+ 1 & 0 & 0 \\
+ 2 & 750 & 0 \\
+ 3 & 1500 & 0 \\
+ 4 & 2250 & 0 \\
+ 5 & 3000 & 0 \\
+\end{tabular}
+\subcaption{Node coordinates} % subcaption for first table
+\label{tab:node-coordinates}
+\end{minipage}
+\quad
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\captionsetup{justification=centering} % set subcaption centered
+\begin{tabular}{ c c c }
+ Element & Local node 1 & Local node 2 \\
+ \hline
+ 1 & 1 & 2 \\
+ 2 & 2 & 3 \\
+ 3 & 3 & 4 \\
+ 4 & 4 & 5 \\
+\end{tabular}
+\vspace{0.24 cm}
+\subcaption{Element connectivity} % subcaption for second table
+\label{tab:element-connectivity}
+\end{minipage}
+\end{table}
+\newpage
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{abra0_ink.pdf}
+  \caption{Schematic drawing of the setup.}
+  \label{fig:setup}
+\end{figure}
+\noindent The material stiffness matrix $K_e$ for a single element is:
+\begin{equation}
+\textbf{\textit{K}}_e = \dfrac{I_1~E}{l^3}\left[\begin{matrix}12 & 6 l & -12 & 6 l\\6 l &4 l^{2} & - 6 l & 2l^{2}\\-12 & - 6 l & 12 & - 6 l\\6 l & 2l^{2} & - 6 l & 4 l^{2}\end{matrix}\right].
+\end{equation}
+The geometric stiffness matrix $K_{Ge}$ is given by:
+\begin{equation}
+\textbf{\textit{K}}_{Ge} = \dfrac{N}{30l} \begin{bmatrix}
+36 & 3l & -36 & 3l \\
+3l & 4l^2 & -3l & -l^2 \\
+-36 & -3l & 36 & -3l \\
+3l & -l^2 & -3l & 4l^2 
+\end{bmatrix}
+\end{equation}
+Here, $I_1$ represents the second moment of inertia referring to Z-axis, $E$ represents the Young modulus, $l$ represents the element length, and $N$ represents the normal force resulting from stress. Every element has the same length $L/4 = 750 \left[ \text{mm} \right]$, the same second moment of inertia $I_1$ (due to equivalent cross sections), and the same modulus of elasticity $E$. After substitution, the stiffness matrices are given by:
+\begin{gather}
+\textbf{\textit{K}}_e = \dfrac{8 I_1~E}{L^3}\left[\begin{matrix}96 & 12 L & -96 & 12 L\\12 L & 2 L^{2} & - 12 L & L^{2}\\-96 & - 12 L & 96 & - 12 L\\12 L & L^{2} & - 12 L & 2 L^{2}\end{matrix}\right], \\
+\textbf{\textit{K}}_{Ge} = -\dfrac{N}{120~L}\displaystyle \left[\begin{matrix}576 & 12 L & -576 & 12 L\\12 L & 4 L^{2} & - 12 L & - L^{2}\\-576 & - 12 L & 576 & - 12 L\\12 L & - L^{2} & - 12 L & 4 L^{2}\end{matrix}\right].
+\end{gather}
+The material stiffness matrix $\textbf{\textit{K}}_e$ is the same for all elements, i.e., $\textbf{\textit{K}}_e = \textbf{\textit{K}}_{ei}$ for $i$ = 1 ... 4. However, the geometric stiffness matrix $\textbf{\textit{K}}_{Ge}$ is different because the beam is loaded by an axial force $F$ at two points. The normal force on element 1 and 2 is $N = -F$, while on element 3 and 4, it is $N = -2F$. After substitution, the geometric stiffness matrices for element 1 and 2 are given by:
+\begin{equation}
+\textbf{\textit{K}}_{Ge1} = \textbf{\textit{K}}_{Ge2} = -\dfrac{F}{120~L}\displaystyle \left[\begin{matrix}576 & 12 L & -576 & 12 L\\12 L & 4 L^{2} & - 12 L & - L^{2}\\-576 & - 12 L & 576 & - 12 L\\12 L & - L^{2} & - 12 L & 4 L^{2}\end{matrix}\right],
+\end{equation}
+And for element 3 and 4:
+\begin{equation}
+\textbf{\textit{K}}_{Ge3} = \textbf{\textit{K}}_{Ge4} = -\dfrac{2 ~ F}{120~L}\displaystyle \left[\begin{matrix}576 & 12 L & -576 & 12 L\\12 L & 4 L^{2} & - 12 L & - L^{2}\\-576 & - 12 L & 576 & - 12 L\\12 L & - L^{2} & - 12 L & 4 L^{2}\end{matrix}\right],
+\end{equation}
+
+\noindent The structural stiffness matrices can be assembled from the element stiffness matrices, resulting in $10 \times 10$ matrices. However, these can be condensed to $8 \times 8$ matrices by removing the 1st and 2nd rows and columns, based on the boundary conditions $v_1 = 0 \left[ \text{m} \right]$ and $\varphi_1 = 0 \left[ \text{rad} \right]$. The condensed material stiffness matrix is given by:
+\begin{equation}
+\textbf{\textit{K}}_{c} =  \dfrac{8~ I_1~E}{L^3} \left[\begin{matrix}192 & 0 & -96 & 12 L & 0 & 0 & 0 & 0\\0 & 4 L^{2} & - 12 L & L^{2} & 0 & 0 & 0 & 0\\-96 & - 12 L & 192 & 0 & -96 & 12 L & 0 & 0\\12 L & L^{2} & 0 & 4 L^{2} & - 12 L & L^{2} & 0 & 0\\0 & 0 & -96 & - 12 L & 192 & 0 & -96 & 12 L\\0 & 0 & 12 L & L^{2} & 0 & 4 L^{2} & - 12 L & L^{2}\\0 & 0 & 0 & 0 & -96 & - 12 L & 96 & - 12 L\\0 & 0 & 0 & 0 & 12 L & L^{2} & - 12 L & 2 L^{2}\end{matrix}\right].
+\end{equation}
+
+Similarly, the condensed geometric stiffness matrix is given by:
+\begin{equation}
+\textbf{\textit{K}}_{Gc} = \frac{F}{L}
+\left[\begin{matrix}
+-\frac{48}{5} & 0 & \frac{24}{5} & -\frac{1}{10} & 0 & 0 & 0 & 0 \\[1ex]
+0 & -\frac{L}{15} & \frac{1}{10} & \frac{L}{120} & 0 & 0 & 0 & 0 \\[1ex]
+\frac{24}{5} & \frac{1}{10} & -\frac{72}{5} & -\frac{1}{10} & \frac{48}{5} & -\frac{1}{5} & 0 & 0 \\[1ex]
+-\frac{1}{10} & \frac{L}{120} & -\frac{1}{10} & -\frac{L}{10} & \frac{1}{5} & \frac{L}{60} & 0 & 0 \\[1ex]
+0 & 0 & \frac{48}{5} & \frac{1}{5} & -\frac{96}{5} & 0 & \frac{48}{5} & -\frac{1}{5} \\[1ex]
+0 & 0 & -\frac{1}{5} & \frac{L}{60} & 0 & -\frac{2L}{15} & \frac{1}{5} & \frac{L}{60} \\[1ex]
+0 & 0 & 0 & 0 & \frac{48}{5} & \frac{1}{5} & -\frac{48}{5} & \frac{1}{5} \\[1ex]
+0 & 0 & 0 & 0 & -\frac{1}{5} & - \frac{L}{15} & \frac{1}{5} & -\frac{L}{15}
+\end{matrix} \right].
+\end{equation}
+
+To obtain the critical load factors $\lambda_{cr}$, an eigenvalue-eigenvector problem needs to be solved. The equation for the calculations is given by:
+\begin{equation}
+\det \left(\textbf{\textit{K}}_c + \lambda_{cr} ~ \textbf{\textit{K}}_{Gc} \right) = 0.
+\end{equation}
+
+This equation is an 8th degree polynomial of $\lambda_{cr}$. However, for this task, only the first 4 roots are important. The critical forces $F_{cr}$ can be calculated by multiplying the initial force $F$ by the critical load factors, i.e.,
+\begin{equation}
+F_{cr} = \lambda_{cr} ~ F
+\end{equation}
+
+The critical loads and forces are shown in Table \ref{tab:critical-loads-forces1}.
+\begin{table}[h]
+\centering
+\captionsetup{justification=centering,position=top} % set caption above table and centered
+\caption{The important critical loads and forces} % common caption for both tables
+\label{tab:critical-loads-forces1}
+\begin{tabular}{cccccc}
+
+$i$ && $\lambda_{cr} \left[ \text{-} \right]$ && $F_{cr} \left[ \text{N} \right]$ \\
+\hline
+1 && 15.314 &&  1531.4 \\
+2 &&  107.405 &&  10740.5 \\
+3 &&  324.32 &&  32432 \\
+4 &&  634.61 &&  63461 \\
+
+\end{tabular}
+
+\end{table}
+
+\section{Verifying ANSYS calculation}
+Verify the calculated critical forces by ANSYS STUDENT ver.! Apply the same four-element model!\\
+\horrule{0.4pt}
+\medskip
+
+
+\noindent In the second task, the critical forces calculated in the first task are verified using \textit{ANSYS STUDENT} version. A four-element model is used, with the same \textit{BEAM3} element type, material properties, and real constants for cross-section. (\textit{BEAM3} is a basic element that is suitable for simple beam analysis, while \textit{BEAM188} is a more advanced element that can handle more complex beam geometries and properties, for this reason I stayed with the simpler, \textit{BEAM3} element type.)Negative x directional loads are applied at the middle and right end of the beam, and the prestress effect is calculated using static analysis mode. Eigen-buckling analysis is then performed, and the first four modes are extracted to obtain four critical load factors showed in Figure \ref{fig:KEP}. 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\linewidth]{task2_OK_NEW.jpg}
+\caption{Resulting critical loads using ANSYS}
+\label{fig:KEP}
+\end{figure}
+
+These load factors are used to calculate critical forces, and the results match those from the previous matrix calculation in Task 1, confirming its accuracy.
+\pagebreak
+
+\begin{table}[h!]
+\centering
+\captionsetup{justification=centering,position=top} % set caption above table and centered
+\caption{The important critical loads and forces} % common caption for both tables
+\label{tab:critical-loads-forces}
+\begin{tabular}{cccccc}
+
+$i$ && $\lambda_{cr} \left[ \text{-} \right]$ && $F_{cr} \left[ \text{N} \right]$ \\
+\hline
+1 && 15.314 &&  1531.4 \\
+2 &&  107.40 &&  10740 \\
+3 &&  324.31 &&  32431 \\
+4 &&  634.61 &&  63461 \\
+
+\end{tabular}
+\end{table}
+
+\noindent It is important to note that, despite the fact that I pointed out at the beginning that I am using \textit{BEAM3} element type, there is little difference compared to \textit{BEAM188} element type for this explicit example.To compare the results obtained with \textit{BEAM3} and \textit{BEAM188} more easily, we can create a table to display the critical buckling loads for each element type which is showed in Table \ref{table:beam-results}.
+
+\begin{table}[h]
+    \centering
+    \caption{Comparison of critical buckling loads obtained with \textit{BEAM3} and \textit{BEAM188} elements}
+    \label{table:beam-results}
+    \begin{tabular}{ccc}
+  
+       Critical Buckling Loads & \textit{BEAM3} & \textit{BEAM188} \\ \hline
+        $\lambda_{cr1}$ & 15.314 & 15.312 \\ 
+        $\lambda_{cr2}$ & 107.40 & 107.13 \\ 
+        $\lambda_{cr3}$ & 324.31 & 316.84 \\ 
+        $\lambda_{cr4}$ & 634.61 & 625.34 \\ 
+    \end{tabular}
+\end{table}
+
+
+\noindent From the table, we can see that the results obtained with \textit{BEAM3} and \textit{BEAM188} are similar, but not identical. It is worth noting that the differences between the two sets of results may be due to a variety of factors, including the specific geometry of the beam being analyzed, the material properties of the beam, and the specific boundary conditions applied in the analysis.
+
+\section{Recalculating Critical Forces with Modified Beam Properties and Refined Mesh}
+Modify the beam properties in accordance with problem \circledB  ,$I_2 \neq I_1$! Apply a refined mesh, use 10 elements along each part! Calculate the values of the critical forces again!\\
+\horrule{0.4pt}
+\medskip
+
+\noindent The third task involves modifying the FE model to calculate the critical forces again, but this time for problem \circledB \, where $I_2 \neq I_1$. The left half of the beam has a different cross-section with a different second moment of area. Real constants sets were created for each cross-section and associated with the appropriate unmeshed line before meshing. The mesh was refined to include 10 elements along each part, and the same material properties, constraints, and loads were applied as in the previous tasks.\linebreak
+
+\noindent After the prestress effects were calculated, the Eigen-buckling analysis was performed, and four modes were extracted. The critical load factors for the modified beam can be found in Figure \ref{fig:KEP3}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\linewidth]{task3_result.jpg}
+\caption{Caption text goes here.}
+\label{fig:KEP3}
+\end{figure}
+
+
+\noindent Multiplying the critical load factors with the initial load, the critical forces were obtained and are presented in Table \ref{tab:critical-loads-forces3}. 
+
+\begin{table}[h]
+\centering
+\captionsetup{justification=centering,position=top} % set caption above table and centered
+\caption{The important critical loads and forces} % common caption for both tables
+\label{tab:critical-loads-forces3}
+\begin{tabular}{cccccc}
+
+$i$ && $\lambda_{cr} ~ \left[ \text{-} \right]$ && $F_{cr} ~ \left[ \text{N} \right]$ \\
+\hline
+1 && 32.515 &&  3251.5 \\
+2 &&  157.35 &&  15735 \\
+3 &&  564.26 &&  56426 \\
+4 &&  959.98 &&  95998 \\
+
+\end{tabular}
+\end{table}
+
+\noindent It can be concluded that the structure becomes stiffer with the bigger cross-section, resulting in an increase in critical forces.
+
+\section{Post-buckling analysis with time curves}
+Based on point \circled{3.} perform the post-buckling analysis of the beam! Apply the time curves shown
+in the right side of the figure! Plot the variation of UY in the mid-node of the beam as a function
+of time. Plot the moment (MZ) and shear force (VY) diagrams if t = 15 s!\\
+\horrule{0.4pt}
+\medskip
+
+\noindent The fourth task is to study the post-buckling effect of the beam by applying the time curves shown in Figure 5 to the model obtained from the previous task. The x-directional load has been modified to 
+\begin{equation}
+F = 0.9965 ~ F_{cr1} = 3240.11975 \approx 3240.12 ~ [N]
+\end{equation}
+and a y-directional force of 
+\begin{equation}
+F_y = 300 ~ [N]
+\end{equation}
+will also be applied with a time curve.\\
+
+\noindent Solution controls were modified by setting the correct time value for the load steps, modifying substep settings, changing analysis options to Large Displacement Static, and setting the Frequency to write every substep to solve the nonlinear problem. The realization of the time curves showed in Table \ref{tab:loadsteps}.
+
+\pagebreak
+
+\begin{table}[h]
+\centering
+\caption{Load steps for post-buckling analysis}
+\label{tab:loadsteps}
+\begin{tabular}{cccc}
+Step & Time $\left[ \text{s} \right]$ & $F_x$ $\left[ \text{N} \right]$ & $F_y$ $\left[ \text{N} \right]$ \\
+\hline
+1 & 5 & 0 & 300 \\
+2 & 10 & 3240.12 & 300 \\
+3 & 20 & 3240.12 & 300 \\
+4 & 30 & 3240.12 & 0 \\
+5 & 50 & 0 & 0 \\
+\end{tabular}
+
+\end{table}
+
+Diagrams illustrating the variation of $U_Y$ at the mid-node with respect to time, as well as the $M_Z$ moment and $V_Y$ shear force at t = 15 $\left[ \text{s} \right]$, are presented below from Figur \ref{fig:uy} to \ref{fig:vy}.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.75\textwidth]{UY.jpg}
+\caption{The variation of $U_Y$  $\left[ \text{mm} \right]$ in the mid-node of the beam as a function of time $\left[ \text{s} \right]$}
+\label{fig:uy}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\textwidth]{MZPLOT.jpg}
+\caption{The $M_Z$ $\left[ \text{Nmm} \right]$ moment diagram at t = 15 $\left[ \text{s} \right]$}
+\label{fig:mz}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\textwidth]{VYPLOT2.jpg}
+\caption{The $V_Y$ $\left[ \text{N} \right]$ shear force diagram at t = 15 $\left[ \text{s} \right]$}
+\label{fig:vy}
+\end{figure}
+\end{document}

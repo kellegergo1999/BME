@@ -1,0 +1,813 @@
+\documentclass[12pt]{article}
+\usepackage{blindtext}
+\usepackage[top=25mm, bottom=25mm, left=20mm, right=20mm]{geometry}
+\usepackage{t1enc}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{lastpage}
+\usepackage{amsmath}
+\usepackage{amssymb,physics}
+\usepackage{amsthm}
+\usepackage{empheq}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage{bm}
+\usepackage{gensymb}
+\usepackage{pdfpages}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{mdframed}
+\usepackage[most]{tcolorbox}
+\usepackage{pgfplots}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\pgfplotsset{compat = newest}
+\usepackage{listings}
+\usepackage[makeroom]{cancel}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.9059,0.902,0.9137}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+\newtcolorbox{mygraybox}[1]{
+  enhanced,
+  colback = gray!10,
+  colbacklower = black!80,
+  colframe = black,
+  rounded corners,
+  boxrule = 0pt,
+  leftrule = 2pt, % Adjust this for a thicker black frame
+  toprule = 0pt, % Adjust this for a thicker black frame
+  rightrule = 0pt, % Adjust this for a thicker black frame
+  bottomrule = 0pt, % Adjust this for a thicker black frame
+  left = 10pt,
+  right = 10pt,
+  top = 2pt,
+  bottom = 2pt,
+  arc = 1mm, % Adjust this for the roundness
+  before upper = #1
+}
+
+
+\urlstyle{same}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{pict2e}
+\usepackage{blindtext}
+\usepackage{tikz}
+\newcommand*\circledB{%
+  \tikz[baseline=(char.base)]{%
+    \node[shape=circle,draw,inner sep=1pt] (char) {b};%
+  }%
+}
+% Table float box with bottom caption, box width adjusted to content
+
+
+\newcommand*\circled[1]{%
+  \tikz[baseline=(char.base)]{%
+    \node[shape=circle,draw,inner sep=1pt] (char) {#1};%
+  }%
+}
+
+
+\DeclareRobustCommand{\slashcirc}{{\mathpalette\doslashcirc\relax}}
+
+\usepackage{graphicx,array}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{130pt}}m{#1}}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{130pt}}m{#1}}
+
+\makeatother
+
+\usepackage{amsmath}
+\newcommand\aug{\fboxsep=-\fboxrule\!\!\!\fbox{\strut}\!\!\!}
+\usepackage{wasysym}
+\usepackage{tikz}
+\usepackage{xcolor}
+%\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+\newcommand*\widefbox[1]{\fbox{\hspace{2em}#1\hspace{2em}}}
+\newcommand{\fakesection}[1]{%
+% Increase section counter
+  % Add section mark (header)
+  \addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}% Add section to ToC
+  % Add more content here, if needed.
+}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+\pagestyle{fancy}
+\newcommand\invisiblesection[1]{%
+  \refstepcounter{section}%
+  \addcontentsline{toc}{section}{\protect\numberline{}Feladatkitűzés}
+  \sectionmark{1}}
+\newcommand{\NEV}{Gergő Kelle}
+\newcommand{\NEPTUN}{GBBNUL}
+\newcommand{\TANTARGYKOD}{BMEGEMINWAC}
+\newcommand{\HFCIME}{Advanced Control and Informatics \\ Homework}
+\newcommand{\HFFEJLECCIME}{Advanced Control and Informatics}
+\title{\centering \includegraphics[width=10 cm , height=2.8cm]{figures/bme_logo_nagy}
+\bigskip
+
+\normalfont \normalsize \textsc{\centering Budapest University of Technology and Economics
+\\ Faculty of Mechanical Engineering} \\ [12pt] \horrule{0.5pt} \\[0.4cm] \huge \HFCIME{} \\ \horrule{2pt} \\[0.5cm]}
+\lhead{\TANTARGYKOD, \HFFEJLECCIME{}}
+\rfoot{\thepage\ / \pageref{LastPage}}
+\cfoot{}
+\rhead{\NEV{}, \NEPTUN{}}
+\author{\NEV{}}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+\includepdf[pages=-]{figures/HW_D.pdf}
+\maketitle
+\pagebreak
+
+\pagebreak
+\tableofcontents
+\newpage
+\section*{Initial data and equations}
+\addcontentsline{toc}{section}{Initial data and equations}
+The homework focuses on studying the dynamics of an inverted pendulum system, including the cart's position, velocity, pendulum angle, and angular velocity.
+As for initial data the homework description defined a viscous damping $b = 0.2$ [Ns/m] along the $x$ axis. While the inertia of the pendulum, $J_s = \dfrac{1}{3} m ~ L^2$.\\
+\noindent Further initial data is showed in Table \ref{tab:data}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Initial Data based on \textit{Homework Codes.pdf}}
+  \label{tab:data}
+  \begin{tabular}{ccc}
+    \hline
+    $m$ [kg] & $M$ [kg] & $L$ [m]\\[0.2cm]
+    \hline
+    1.53 & 7.37 & 3.05\\
+  \end{tabular}
+\end{table}
+\noindent Based on the given parameters in Table \ref{tab:data} we can calculate $J_s$ as:
+\begin{equation}
+  J_s = \dfrac{1}{3} m ~ L^2 = 4.744275 ~ \left[ \text{kgm}^2 \right]
+\end{equation}
+\noindent The homework description also defined the generalized coordinates that should be used during calculation, which is:
+\begin{equation}
+  \mathbf{q} = \begin{bmatrix}
+    \phi \\
+    x
+  \end{bmatrix} \quad , \quad   \dot{\mathbf{q}} = \begin{bmatrix}
+    \dot{\phi} \\
+    \dot{x}
+  \end{bmatrix} \quad , \quad   \ddot{\mathbf{q}} = \begin{bmatrix}
+    \ddot{\phi} \\
+    \ddot{x}
+  \end{bmatrix}
+\end{equation}
+Regarding to this generalized coordinates the nonlinear and the linear equation of motion is also given as:
+\begin{equation}
+  \label{eq:nonlin}
+  \text{Nonlinear:}
+  \quad
+  \begin{bmatrix}
+      0 \\ u
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+      J_s + m ~ L^2 & m ~ L ~ \cos\left( \phi \right) \\
+      m ~ L ~ \cos\left( \phi \right) & M + m
+  \end{bmatrix}
+  \ddot{\mathbf{q}} + \begin{bmatrix}
+    -m~ g ~ L \sin\left( \phi \right) \\
+    b~ \dot{x} - m ~ L \ \dot{\phi} ^2 \sin\left( \phi \right)
+  \end{bmatrix}
+\end{equation}
+\medskip
+\begin{equation*}
+  \text{Linearization:}
+  \quad \sin{\phi} = \phi \quad \quad \text{and} \quad \quad \cos{\phi} = 1 \quad \quad \textit{for small } \phi
+\end{equation*}
+\medskip
+\begin{equation}
+  \label{eq:lin}
+  \text{Linearized:}
+  \quad
+  \begin{bmatrix}
+    0 \\ u
+\end{bmatrix}
+=
+\begin{bmatrix}
+    J_s + m ~ L^2 & m ~ L \\
+    m ~ L & M + m
+\end{bmatrix}
+\ddot{\mathbf{q}} + \begin{bmatrix}
+ 0 & 0 \\
+ 0 & b
+\end{bmatrix} \dot{\mathbf{q}} + \begin{bmatrix}
+  -m~g~L & 0 \\
+  0 & 0
+\end{bmatrix} \mathbf{q}
+\end{equation}
+
+\section*{Task 1 - Nonlinear model}
+\addcontentsline{toc}{section}{Task 1 - Nonlinear model}
+Rearranging the equation \label{eq:nonlin} to get the second derivatives of the generalized coordinates we get the following equation:
+\begin{equation}
+  \ddot{\mathbf{q}} = 
+  \begin{bmatrix}
+    J_s + m ~ L^2 & m ~ L ~ \cos\left( \phi \right) \\
+    m ~ L ~ \cos\left( \phi \right) & M + m
+  \end{bmatrix}^{-1}
+  \begin{bmatrix}
+    m~ g ~ L \sin\left( \phi \right) \\
+    u -b~ \dot{x} + m ~ L \ \dot{\phi} ^2 \sin\left( \phi \right)
+  \end{bmatrix}
+\end{equation}
+With the help of two integrators the generalized coordinates can be determined for the nonlinear model. The first derivatives can be produced by using a loop back from after the first integrator. The created Simulink model for the nonlinear system case can be viewed in Figure \ref{fig:plot1} while the system response to a unit step function is visualized on Figure \ref{fig:plot2}.
+
+\begin{figure}[ht!]
+  \begin{center}
+  \includegraphics[width=0.8\textwidth]{figures/t1_nonlin_subsys.jpg}
+  \captionof{figure}{Simulink implementation of the nonlinear model (subsystem)}
+  \label{fig:plot1}
+  \end{center}
+\end{figure}
+
+\begin{figure}[ht!]
+  \begin{center}
+  \includegraphics[width=0.4\textwidth]{figures/t1_step_nonlin.jpg}
+  \captionof{figure}{Unit step function excitation}
+  \label{fig:plot2}
+  \end{center}
+\end{figure}
+
+\newpage
+ 
+\begin{figure}[ht!]
+  \begin{center}
+  \includegraphics[width=0.65\textwidth]{figures/t1_results.pdf}
+  \captionof{figure}{Results for generalized coordinates}
+  \label{fig:plot3}
+  \end{center}
+\end{figure}
+
+\noindent Based on the results seen in Figure \ref{fig:plot3} it can be stated that the system is unstable, thus a control mechanism is needed.
+\newpage
+
+\section*{Task 2 - Linearized model}
+\addcontentsline{toc}{section}{Task 2 - Linearized model}
+The linerization can be done via \textit{Simulink} automatic linearization and with analical calculations. In order to have a proper documentation about the homework I've choosed to do analytic linearization. With the help of the second order equation of motion the linearized state and input matrices can be calculated as equation (\ref{eq:6}) and (\ref{eq:7}) shows. \textit{The resulting numerical solution can be viewed below.}
+
+\begin{gather}
+  \label{eq:6}
+  \mathbf{A} = \begin{bmatrix}
+    \mathbf{0} & \mathbf{I} \\
+    -\mathbf{M}^{-1} \mathbf{K} & -\mathbf{M}^{-1} \mathbf{C}      
+  \end{bmatrix} \\
+  \label{eq:7}
+  \mathbf{B} = \begin{bmatrix}
+    \mathbf{0} \\
+    \mathbf{F}  
+  \end{bmatrix} 
+\end{gather}
+
+\begin{equation*}
+	%\hspace{0 cm}
+	\begin{aligned}
+	\text{Where}
+	 \quad
+	  \begin{array}{|l@{} c l l c l}
+		  \text{State matrix}  & :  & \textbf{A} = \begin{bmatrix}
+        0 & 1 & 0 & 0 \\
+        2.7694 & 0 & 0 & 0.0063 \\
+        0 & 0 & 0 & 1 \\
+        -1.4520 & 0 & 0 & -0.0258 
+      \end{bmatrix} &
+		  \text{Input matrix}  & :  & \textbf{B} = \begin{bmatrix}
+        0 \\
+        -0.0317 \\
+        0 \\
+        0.129
+      \end{bmatrix} \\[1.0cm]
+      \text{Mass matrix } & : & \textbf{M}= \begin{bmatrix}
+        18.9771 & 4.6665 \\
+        4.6665 & 8.9
+      \end{bmatrix} &
+      \text{Damping matrix } & : & \textbf{C} = \begin{bmatrix}
+        0 & 0 \\
+        0 & 0.2
+      \end{bmatrix} \\[0.5cm]
+      \text{Stiffness matrix } & : & \textbf{K} = \begin{bmatrix}
+        -45.7784 & 0 \\
+        0 & 0 
+      \end{bmatrix} &
+      \text{Excitation vector } & : & \textbf{F}= \begin{bmatrix}
+        0\\
+        1
+      \end{bmatrix}
+	  \end{array}
+  \end{aligned}
+\end{equation*}
+
+\noindent Before visualization the aoutmatic linearization can be done using the \texttt{linearize} function in MATLAB, since the ordering is not what we desire I've also implemented an \texttt{xperm} function.
+
+\noindent The two method gave very similar results, but to be exact in case of state and input matrices the following numerical values were determined as a result of the difference between the two method.
+\begin{gather}
+  \mathbf{A}_{analytic} - \mathbf{A}_{automatic} = 10^{-10} \begin{bmatrix}
+    0 & 0 & 0 & 0 \\
+    0.4616 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 \\
+    -0.2420  & 0 & 0 & 0 
+  \end{bmatrix} \\
+  \mathbf{B}_{analytic} - \mathbf{B}_{automatic} = \mathbf{0}
+\end{gather}
+
+
+\noindent The system response to a step function for both the linearized and nonlinear models is illustrated in Figure \ref{fig:task2}.
+\newpage
+
+\begin{figure}[ht!]
+  \begin{center}
+  \includegraphics[width=0.7\textwidth]{figures/t2_simulink.jpg}
+  \captionof{figure}{Simulink Model for Solution Method Comparison}
+  \label{fig:task2}
+  \end{center}
+\end{figure}
+
+\begin{figure}[ht!]
+  \begin{center}
+  \includegraphics[width=0.7\textwidth]{figures/t2_results.pdf}
+  \captionof{figure}{Comparison of Analytic and Automatic Linearization Results With The Nonlinear Solution}
+  \label{fig:task2}
+  \end{center}
+\end{figure}
+
+\section*{Task 3 - Pole/zero map}
+\addcontentsline{toc}{section}{Task 3 - Pole/zero map}
+In this task I've calculated the poles with the corresponding damping factors and time constants of the linearized system determined in Task 2 to extract key parameters and visualize its behavior.
+\medskip
+
+\noindent As for the pole-zero parameters the natural frequencies ($\omega_n$), damping factors ($\zeta$), and poles of the linearized system were obtained using the \texttt{damp} function in MATLAB:
+
+\begin{verbatim}
+[omega_n, damping_factors, poles] = damp(SYS);
+\end{verbatim}
+
+\noindent The time constants ($\tau$) associated with each pole were calculated using the formula $\tau = \dfrac{1}{{\omega_n \cdot \zeta}}$:
+
+\begin{verbatim}
+time_c = 1 ./ (omega_n .* damping_factors);
+\end{verbatim}
+
+\noindent  With all theese parameters the pole-zero map of the linearized system was generated using the \texttt{pzmap} function in MATLAB. The resulting pole-zero map is showed in Figure \ref{fig:pzmap00} while the poles with the corresponding damping factors and time constants is summarized in Table \ref{tab:pzmap}.
+
+\begin{figure}[ht!]
+  \begin{center}
+  \includegraphics[width=0.6\textwidth]{figures/pzmap.jpg}
+  \captionof{figure}{Pole-zero map}
+  \label{fig:pzmap00}
+  \end{center}
+\end{figure}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Pole-zero map key parameters}
+  \label{tab:pzmap}
+  \begin{tabular}{cccc}
+    \hline
+    \textbf{Natural frequency} &\textbf{Poles} & \textbf{Damping factors} & \textbf{Time constants}\\[0.1cm]
+    \hline
+    0 & 0 & -1 & $-\infty$ \\
+    0.022471 & -0.022471 & 1 & 44.501\\
+    1.6625 & 1.6625 & -1 & -0.6015\\
+    1.6658 & -1.6658 & 1 & 0.6003
+  \end{tabular}
+\end{table}
+
+\section*{Task 4 - Controllability and observability}
+\addcontentsline{toc}{section}{Task 4 - Controllability and observability}
+To determine the controllability of the system, the controllability matrix $\mathbf{Crtb}$ was formed using the \texttt{ctrb} function in MATLAB. The determination of controllability is based on the following equation:
+\begin{equation}
+  \underbrace{\text{length}(\mathbf{A})}_{n}~ - ~ \text{rank}(\mathbf{Crtb})  = \begin{cases}
+    \text{controllable}, & \text{if } \dots = 0 \\
+    \text{NOT controllable}, & \text{if } \dots \neq 0
+  \end{cases}
+\end{equation}
+
+\noindent The difference $n - \text{rank}(\mathbf{Crtb})$ was computed, where $n$ is the number of states. If this difference is zero, the system is considered controllable. My result showed that the system is \textbf{controllable}.\\
+\medskip
+
+\noindent To assess the observability of the system, the observability matrix $\mathbf{Obsv}$ was formed using the \texttt{obsv} function:
+
+\begin{equation}
+  \underbrace{\text{length}(\mathbf{A})}_{n}~ - ~ \text{rank}(\mathbf{Obsv})  = \begin{cases}
+    \text{observable}, & \text{if } \dots = 0 \\
+    \text{NOT observable}, & \text{if } \dots \neq 0
+  \end{cases}
+\end{equation}
+
+\noindent The system's observability is determined by computing the difference \(n - \text{rank}(\mathbf{Obsv})\). The system is considered observable if this difference is zero because the value of \(n - \text{rank}(\mathbf{Obsv})\) indicates the number of unobservable states in the system. If this quantity is zero, all states are observable. My result showed that the system is \textbf{observable}.
+
+\section*{Task 5 - Nonlinear system state feedback controller with pole placement}
+\addcontentsline{toc}{section}{Task 5 - Nonlinear system state feedback controller with pole placement}
+In this task, a state feedback controller was designed with pole placement, starting with the initial poles $p = [-1; -1.1; -1.2; -1.3]$ and initial conditions of $\phi_0 = 0.1,~ \dot{\phi}_0 = 0.3, ~ x_0 = 1.1, ~ \dot{x}_0 = 0.4$. The controller was tested on the nonlinear system showed in Figure \ref{fig:task5_simulink} with varying initial conditions.
+
+\begin{figure}[ht!]
+  \begin{center}
+  \includegraphics[width=0.7\textwidth]{figures/t5_simulink.jpg}
+  \captionof{figure}{Simulink Model for Task 5}
+  \label{fig:task5_simulink}
+  \end{center}
+\end{figure}
+
+\subsection*{Pole Increase}
+\noindent In case of pole increasing for each iteration, new pole values were calculated, and state feedback gains were computed using the \texttt{place} function. Simulink models were run, and figures were generated to visualize the system's response, including plots for $\phi$, $x$ and the control signal $u$. 
+
+
+\newpage
+\noindent The different $\textbf{p}$ values can be seen in Table \ref{tab:pinc} while the resulting solutions is showed in Figure \ref{fig:pinc1}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Pole increasing case}
+  \label{tab:pinc}
+  \begin{tabular}{cl}
+    \hline
+    i &\multicolumn{1}{c}{\textbf{p}$_{\text{inc}}$}\\[0.1cm]
+    \hline
+    initial & $[-1; -1.1; -1.2; -1.3]$ \\[0.1cm]
+    1 & $[-0.75; -0.85; -0.95; -1.05]$\\[0.1cm]
+    2 & $[-0.5; -0.6; -0.7; -0.8]$\\[0.1cm]
+    3 & $[-0.25; -0.35; -0.45; -0.55]$\\[0.1cm]
+    4 & $[0; -0.1; -0.2; -0.3]$\\[0.1cm]
+    5 & $[0.25; 0.15; 0.05; -0.05]$
+  \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  
+  \begin{minipage}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/phi_t5_increase_p0.jpg}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/phi_t5_increase_p1.jpg}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/phi_t5_increase_p2.jpg}
+  \end{minipage}%
+
+  \medskip
+
+  \begin{minipage}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/phi_t5_increase_p3.jpg}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/phi_t5_increase_p4.jpg}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/phi_t5_increase_p5.jpg}
+  \end{minipage}%
+  \label{fig:pinc1}
+  \caption{System's Respons with Different $\mathbf{p}$}
+\end{figure}
+
+\newpage
+
+\subsection*{Pole Decrease}
+\noindent As for pole decresing similarly to the pole increasing case, new pole values were calculated (as Table \ref{tab:pdec} shows), and state feedback gains were computed. Simulink models were run, and figures were created for system response showed in Figure \ref{fig:pdec}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Pole decreasing case}
+  \label{tab:pdec}
+  \begin{tabular}{cl}
+    \hline
+    i &\multicolumn{1}{c}{\textbf{p}$_{\text{dec}}$}\\[0.1cm]
+    \hline
+    initial & $[-1; -1.1; -1.2; -1.3]$ \\[0.1cm]
+    1 & $[-1.4; -1.5; -1.6; -1.7]$\\[0.1cm]
+    2 & $[-1.8; -1.9; -2; -2.1]$\\[0.1cm]
+    3 & $[-2.2; -2.3; -2.4; -2.5]$\\[0.1cm]
+    4 & $[-2.6; -2.7; -2.8; -2.9]$\\[0.1cm]
+    5 & $[-3; -3.1; -3.2; -3.3]$
+  \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  
+  \begin{minipage}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/phi_t5_decrease_p0.jpg}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/phi_t5_decrease_p1.jpg}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/phi_t5_decrease_p2.jpg}
+  \end{minipage}%
+
+  \medskip
+
+  \begin{minipage}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/phi_t5_decrease_p3.jpg}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/phi_t5_decrease_p4.jpg}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/phi_t5_decrease_p5.jpg}
+  \end{minipage}%
+  \label{fig:pdec}
+  \caption{System's Respons with Different $\mathbf{p}$}
+\end{figure}
+\newpage
+\subsection*{Comparison}
+\noindent Comparison figures for $\phi$ and $x$ were created to observe the system's behavior with different pole values. Additionally, the state feedback gains for each iteration were displayed.
+
+\begin{figure}[htbp]
+  \centering
+
+  \begin{minipage}{\textwidth}
+    \begin{subfigure}{\textwidth}
+      \includegraphics[width=0.49\linewidth]{figures/t5_increase_phi.pdf}
+      \hfill
+      \includegraphics[width=0.49\linewidth]{figures/t5_decrease_phi.pdf}
+      \caption{$\phi$ Plots for Pole Increase and Decrease}
+    \end{subfigure}
+
+    \medskip
+
+    \begin{subfigure}{\textwidth}
+      \includegraphics[width=0.49\linewidth]{figures/t5_increase_x.pdf}
+      \hfill
+      \includegraphics[width=0.49\linewidth]{figures/t5_decrease_x.pdf}
+      \caption{$x$ Plots for Pole Increase and Decrease}
+    \end{subfigure}
+
+    \medskip
+
+    \begin{subfigure}{\textwidth}
+      \includegraphics[width=0.49\linewidth]{figures/t5_increase_u.pdf}
+      \hfill
+      \includegraphics[width=0.49\linewidth]{figures/t5_decrease_u.pdf}
+      \caption{$u$ Plots for Pole Increase and Decrease}
+    \end{subfigure}
+    \caption{Effect Comparison of Pole Increase and Decrease}
+    \label{fig:t5_plots}
+  \end{minipage}
+ 
+\end{figure}
+
+\noindent In the analysis, it was observed that varying the pole values had a significant impact on the system's response to a unit step function. By increasing the poles, from $\mathbf{p}_{\text{inc,4}}$ the system lost its stability. On the contrary, reducing the pole values did not lead to a loss of stability. However, further decreasing the poles caused MATLAB simulations to become unresponsive, suggesting large $\mathbf{K}$ matrices just below $\mathbf{p}_{\text{dec,5}}$.
+\medskip
+
+\noindent In summary whenever a pole is a positive real value the system loses its stability and on the other hand whenever a pole is decreased to a certain degree the MATLAB could not calculate the resulting solution due to large $\mathbf{K}$ values.
+
+\section*{Task 6 - LQR State Feedback}
+\addcontentsline{toc}{section}{Task 6 - LQR state feedback}
+In this task, an LQR (Linear Quadratic Regulator) state feedback controller was designed with varying weighting schemes for the state and control input. The effects of changing the $\mathbf{Q}$ matrices and \(R\) value on control performance were analyzed using a similar Simulink model showed in Figure \ref{fig:task5_simulink}.
+\medskip
+
+\noindent In the MATLAB I've defined different weighting matrices starting from the initial $\mathbf{Q}_1$ to $\mathbf{Q}_5$ and calculated the corresponding LQR controllers.
+\medskip
+
+\noindent By only increasing the value of the (1,1) element in case of $\mathbf{Q}_2$, the system will place more emphasis on minimizing the cost associated with the angular position $\phi$. This adjustment can result in the controller putting more effort into controlling and reducing deviations in $\phi$. This weighting scheme is practical if we want to prioritize the control of $\phi$. To make practical sense about the used weighting schemes I've summarized them in Table \ref{tab:LQR_Q}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Different Q Matrices and Their Practical Meanings}
+  \label{tab:LQR_Q}
+  \begin{tabular}{@{}cll@{}}
+    \hline
+    \textbf{Iteration} & \multicolumn{1}{c}{\textbf{Q Matrix}} & \multicolumn{1}{c}{\textbf{Practical Meaning}} \\
+    \hline
+    1 & $\text{diag}\begin{bmatrix} 100 & 1 & 10 & 100 \end{bmatrix}$ & Initial \textbf{Q} matrix \\[0.2cm]
+    2 & $\text{diag}\begin{bmatrix} 100 & 1 & 1 & 1 \end{bmatrix}$ & Emphasis on $\phi$ \\[0.2cm]
+    3 & $\text{diag}\begin{bmatrix} 1 & 1 & 100 & 1 \end{bmatrix}$ & Emphasis on $x$ \\[0.2cm]
+    4 & $\text{diag}\begin{bmatrix} 100 & 1 & 100 & 1 \end{bmatrix}$ & Emphasis on both $\phi$ and $x$ \\[0.2cm]
+    5 & $\text{diag}\begin{bmatrix} 1 & 100 & 1 & 100 \end{bmatrix}$ & Emphasis on both $\dot{\phi}$ and $\dot{x}$ \\
+  \end{tabular}
+\end{table}
+
+
+\noindent The system response for different weighting schemes are showed in Figure \ref{fig:t6_plots}.
+
+\begin{figure}[htbp]
+  \centering
+
+  \begin{minipage}{\textwidth}
+    \begin{subfigure}{\textwidth}
+      \includegraphics[width=0.49\linewidth]{figures/t6_LQR_x.pdf}
+      \hfill
+      \includegraphics[width=0.49\linewidth]{figures/t6_LQR_u.pdf}
+    \end{subfigure}
+
+    \medskip
+    
+
+    \begin{subfigure}{\textwidth}
+      \begin{center}
+      \includegraphics[width=0.6\linewidth]{figures/t6_LQR_phi.pdf}
+      \end{center}
+    \end{subfigure}
+
+    \caption{Effect Comparison of Different Weighting Schemes (only $\mathbf{Q}$ is changed)}
+    \label{fig:t6_plots}
+  \end{minipage}
+ 
+\end{figure}
+\newpage
+
+\noindent In the end I've tried out different $R$ values to see the cahnge of the results with the initial $\mathbf{Q}$ matrix. The choice of $R$ influences the trade-off between achieving desired control performance and minimizing control effort. Therefore I've defined one with higher and one with lover value than the initial value to see it's effect.
+
+\begin{figure}[htbp]
+  \centering
+
+  \begin{minipage}{\textwidth}
+    \begin{subfigure}{\textwidth}
+      \includegraphics[width=0.49\linewidth]{figures/t6_LQR_x_R.pdf}
+      \hfill
+      \includegraphics[width=0.49\linewidth]{figures/t6_LQR_u_R.pdf}
+    \end{subfigure}
+
+    \medskip
+    
+
+    \begin{subfigure}{\textwidth}
+      \begin{center}
+      \includegraphics[width=0.6\linewidth]{figures/t6_LQR_phi_R.pdf}
+      \end{center}
+    \end{subfigure}
+
+    \caption{Effect Comparison of Different Weighting Schemes (only $R$ is changed)}
+    \label{fig:t6_plots}
+  \end{minipage}
+ 
+\end{figure}
+
+\noindent The increased $R_2 = 5$ resulted a smoother control by placing a higher penalty on the control effort while the decreased $R_3 = 0.1$ resulted opposite as expected.
+
+\section*{Task 7 - Full State Observer Based on the Measurement of \textit{x}}
+\addcontentsline{toc}{section}{Task 7 - Full State Observer Based on the Measurement of \textit{x}}
+In this task, a full-state observer was designed based on the measurement of the displacement \(x\), indicating the position of the cart. Different covariance matrices were experimented with to model process noise (\(\mathbf{\sigma}_{W_d}\)) and measurement noise (\(\sigma_{W_n}\)). Three scenarios were considered:
+
+\begin{itemize}
+  \item \textbf{Scenario 1:} $\mathbf{\sigma}_{Wd_1} = \begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 10 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 10 \end{bmatrix}$ (initial) and $\sigma_{Wn_1} = 0.1$ (initial)
+
+  \item \textbf{Scenario 2:} $\mathbf{\sigma}_{Wd_2} = \begin{bmatrix}
+    10 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 10 & 0 \\
+    0 & 0 & 0 & 1 \end{bmatrix}$ and \(\sigma_{Wn_1}\) (initial)
+    \begin{itemize}
+      \item \textit{Expected Change:} Higher process noise in a different state (compared to Scenario 1) introduces increased uncertainty, influencing state estimation differently. Measurement noise remains consistent.
+    \end{itemize}
+
+  \item \textbf{Scenario 3:} \(\mathbf{\sigma}_{Wd_1}\) (initial) and $\sigma_{Wn_3} = 1.5$
+    \begin{itemize}
+      \item \textit{Expected Change:} Higher measurement noise simulates conditions where measurement instruments have increased uncertainty, potentially leading to a less accurate state estimation.
+    \end{itemize}
+\end{itemize}
+
+\noindent Kalman filters were designed using the \texttt{lqe} and \texttt{ss} functions with different covariance matrices. The Kalman filters were implemented to estimate the state variables based on the available measurements.
+\medskip
+
+
+\noindent  The system (showed in Figure \ref{fig:task7_simulink} with it's subsystem of Figure \ref{fig:task7_simulink_sub}) response was simulated for each scenario, and plots were generated to visualize the performance of the observer. 
+
+
+\begin{figure}[ht!]
+  \begin{center}
+  \includegraphics[width=0.6\textwidth]{figures/t7_simulink.jpg}
+  \captionof{figure}{Simulink Model with Noise Input and Kalman Filter}
+  \label{fig:task7_simulink}
+  \end{center}
+\end{figure}
+
+\begin{figure}[ht!]
+  \begin{center}
+  \includegraphics[width=0.9\textwidth]{figures/t7_simulink_sub.jpg}
+  \captionof{figure}{Nonlinear Simulink Subsystem with Noise Input}
+  \label{fig:task7_simulink_sub}
+  \end{center}
+\end{figure}
+
+
+\noindent  Plots included the true state and the estimated state for the angle signal (\(\phi\)) and position signal (\(x\)) showed in Figure \ref{fig:task7}.
+\newpage
+
+\begin{figure}[htbp]
+  \centering
+  
+  \begin{minipage}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/Task7_phi_var1.jpg}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/Task7_phi_var2.jpg}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/Task7_phi_var3.jpg}
+  \end{minipage}%
+
+  \medskip
+
+  \begin{minipage}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/Task7_x_var1.jpg}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/Task7_x_var2.jpg}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/Task7_x_var3.jpg}
+  \end{minipage}%
+  \label{fig:task7}
+  \caption{Full State Observer Signal with Different Noise Covariances}
+\end{figure}
+
+\medskip
+\noindent The impact of diverse covariance matrices can be succinctly described: employing different matrices alters process noise while maintaining identical estimation accuracy. Additionally, the simulation outcomes illustrated how variations in the covariance of measurement noise affected measurement precision, exerting a more significant influence on the estimation of $\phi$ due to its indirect measurement.
+
+\section*{Task 8 - Trajectory tracking of the LQG controlled system}
+\addcontentsline{toc}{section}{Task 8 - Trajectory tracking of the LQG controlled system}
+In this task, the trajectory tracking performance of an LQG-controlled system with nonzero reference signal compensation was analyzed with the help of a Simulink model showed in Figure \ref{fig:task8_simulink}. To adhere to a specified trajectory, a reference signal needs to be incorporated into the system. In this scenario, a square signal with time steps of 10 seconds is utilized, providing ample time for the system to respond effectively and approach a quasi-steady state between changes in the reference signal.
+
+
+\begin{figure}[ht!]
+  \begin{center}
+  \includegraphics[width=0.75\textwidth]{figures/t8_simulink.jpg}
+  \captionof{figure}{Simulink Model for Task 8}
+  \label{fig:task8_simulink}
+  \end{center}
+\end{figure}
+
+\newpage
+\noindent The code plots the square cart position trajectories, along with the actual system response using the LQG controller showed in Figure \ref{fig:task8}.
+
+\begin{figure}[ht!]
+  \begin{center}
+  \includegraphics[width=0.8\textwidth]{figures/t8_final.pdf}
+  \captionof{figure}{System's Trajectory Tracking}
+  \label{fig:task8}
+  \end{center}
+\end{figure}
+
+\noindent The trajectory tracking plot shows that the system is trying to follow the reference signal but it takes nearly 10 seconds to get back into the quasi-steady state. Other weighting schemes might produce more accurate trajectory tracking, however the task didn't clarified that as a goal.
+
+\end{document}
